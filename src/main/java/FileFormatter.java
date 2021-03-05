@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FileFormatter {
-    private ArrayList<String> linesOfFile;
+    private ArrayList<String> fileLines;
 
     public FileFormatter(String pathToEntryFile) throws IOException {
-        this.linesOfFile = fileToStringArrayListByLines(pathToEntryFile);
+        this.fileLines = fileToStringArrayListByLines(pathToEntryFile);
     }
 
     public static ArrayList<String> fileToStringArrayListByLines(String filePath) throws IOException {
@@ -17,7 +17,9 @@ public class FileFormatter {
         fileReader = new BufferedReader(new FileReader(filePath));
         String line = fileReader.readLine();
         while (line != null){
-            lines.add(line);
+            if(!isCommentary(line)){
+                lines.add(line);
+            }
             line = fileReader.readLine();
         }
         fileReader.close();
@@ -26,6 +28,26 @@ public class FileFormatter {
     }
 
     public ArrayList<String> getLinesOfFile() {
-        return linesOfFile;
+        return fileLines;
+    }
+
+    public static boolean isCommentary(String line){
+        return line.startsWith("#");
+    }
+
+    public static boolean validateMap(String mapDimensions){
+        return mapDimensions.matches("^C( - \\d){2}$");
+    }
+
+    public static boolean validateMoutain(String mountainPosition){
+        return mountainPosition.matches("^M( - \\d){2}$");
+    }
+
+    public static boolean validateTreasure(String treasurePositionAndQuantity){
+        return treasurePositionAndQuantity.matches("^T( - \\d){3}$");
+    }
+
+    public static boolean validateHero(String heroDetails){
+        return heroDetails.matches("^A - [A-Za-z]+( - \\d){2} - [NSEO] - (A|D|G|)*$");
     }
 }

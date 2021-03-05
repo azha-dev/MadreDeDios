@@ -82,4 +82,93 @@ public class FileFormatterTest {
         FileFormatter fileFormatter = new FileFormatter(path.toString());
         assertEquals(expectedResult, fileFormatter.getLinesOfFile());
     }
+
+    @Test
+    public void should_not_include_commentary_line() throws IOException {
+        Path path = tempDir.resolve("testFile.txt");
+
+        try {
+            FileWriter fileWriter = new FileWriter(path.toString());
+            fileWriter.write(
+                    "C - 3 - 4\n" +
+                            "# This is a beautiful commentary\n"+
+                            "M - 1 - 1\n" +
+                            "M - 2 - 2\n" +
+                            "#Thiscommentaryisnotverybeautiful\n"+
+                            "T - 0 - 3 - 2\n" +
+                            "T - 1 - 3 - 1");
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ArrayList<String> expectedResult = new ArrayList<>() {{
+            add("C - 3 - 4");
+            add("M - 1 - 1");
+            add("M - 2 - 2");
+            add("T - 0 - 3 - 2");
+            add("T - 1 - 3 - 1");
+        }};
+        FileFormatter fileFormatter = new FileFormatter(path.toString());
+        assertEquals(expectedResult, fileFormatter.getLinesOfFile());
+    }
+
+    @Test
+    public void isCommentary_should_return_false_if_parameter_not_start_by_hashtag(){
+        String importantString = "C - 3 -4";
+        assertFalse(FileFormatter.isCommentary(importantString));
+    }
+
+    @Test
+    public void isCommentary_should_return_true_if_parameter_start_by_hashtag(){
+        String commentary = "#This is a beautiful commentary";
+        assertTrue(FileFormatter.isCommentary(commentary));
+    }
+
+    @Test
+    public void validateMap_should_return_true_if_string_match(){
+        String matchingString = "C - 4 - 7";
+        assertTrue(FileFormatter.validateMap(matchingString));
+    }
+
+    @Test
+    public void validateMap_should_return_false_if_string_dont_match(){
+        String notMatchingString = "This string isn't matching";
+        assertFalse(FileFormatter.validateMap(notMatchingString));
+    }
+
+    @Test
+    public void validateMountain_should_return_true_if_string_match(){
+        String matchingString = "M - 4 - 7";
+        assertTrue(FileFormatter.validateMoutain(matchingString));
+    }
+
+    @Test
+    public void validateMountain_should_return_false_if_string_dont_match(){
+        String notMatchingString = "This string isn't matching";
+        assertFalse(FileFormatter.validateMoutain(notMatchingString));
+    }
+
+    @Test
+    public void validateTreasure_should_return_true_if_string_match(){
+        String matchingString = "T - 4 - 7 - 8";
+        assertTrue(FileFormatter.validateTreasure(matchingString));
+    }
+
+    @Test
+    public void validateTreasure_should_return_false_if_string_dont_match(){
+        String notMatchingString = "This string isn't matching";
+        assertFalse(FileFormatter.validateTreasure(notMatchingString));
+    }
+
+    @Test
+    public void validateHero_should_return_true_if_string_match(){
+        String matchingString = "A - Lara - 1 - 1 - S - AADADAGGA";
+        assertTrue(FileFormatter.validateHero(matchingString));
+    }
+
+    @Test
+    public void validateHero_should_return_false_if_string_dont_match(){
+        String notMatchingString = "This string isn't matching";
+        assertFalse(FileFormatter.validateHero(notMatchingString));
+    }
 }
