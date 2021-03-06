@@ -1,4 +1,4 @@
-package Heroe;
+package Hero;
 
 import java.awt.*;
 import java.util.Queue;
