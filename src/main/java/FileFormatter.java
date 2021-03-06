@@ -3,11 +3,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class FileFormatter {
-    private ArrayList<String> fileLines;
+public final class  FileFormatter {
 
-    public FileFormatter(String pathToEntryFile) throws IOException {
-        this.fileLines = fileToStringArrayListByLines(pathToEntryFile);
+    private FileFormatter() {
     }
 
     public static ArrayList<String> fileToStringArrayListByLines(String filePath) throws IOException {
@@ -27,10 +25,6 @@ public class FileFormatter {
         return lines;
     }
 
-    public ArrayList<String> getLinesOfFile() {
-        return fileLines;
-    }
-
     public static boolean isCommentary(String line){
         return line.startsWith("#");
     }
@@ -39,7 +33,7 @@ public class FileFormatter {
         return mapDimensions.matches("^C( - \\d){2}$");
     }
 
-    public static boolean validateMoutain(String mountainPosition){
+    public static boolean validateMountain(String mountainPosition){
         return mountainPosition.matches("^M( - \\d){2}$");
     }
 
@@ -49,5 +43,9 @@ public class FileFormatter {
 
     public static boolean validateHero(String heroDetails){
         return heroDetails.matches("^A - [A-Za-z]+( - \\d){2} - [NSEO] - (A|D|G|)*$");
+    }
+
+    public static boolean validateLine(String line){
+        return validateMap(line) || validateMountain(line) || validateTreasure(line) || validateHero(line);
     }
 }
