@@ -1,7 +1,10 @@
 package TreasureMap;
 
+import Log.SimpleLog;
 import TreasureMap.Boxes.Box;
+import TreasureMap.Boxes.Mountain;
 import TreasureMap.Boxes.Plain;
+import TreasureMap.Boxes.Treasure;
 
 public class TreasureMap {
     private Box[][] boxes;
@@ -11,10 +14,10 @@ public class TreasureMap {
     public TreasureMap(int width, int height) {
         this.width = width;
         this.height = height;
-        this.boxes = initArrayOfPlainBoxes(width,height);
+        this.boxes = initArrayOfPlainBoxes(width, height);
     }
 
-    private Box[][] initArrayOfPlainBoxes(int width, int height){
+    public static Box[][] initArrayOfPlainBoxes(int width, int height){
         Box[][] arrayOfPlainBoxes = new Box[width][height];
 
         for(int i = 0; i<arrayOfPlainBoxes.length; i++){
@@ -26,5 +29,22 @@ public class TreasureMap {
         return arrayOfPlainBoxes;
     }
 
+    public void addMountain(int x, int y) {
+        if (x < 0 || y < 0 || x > width || y > height) {
+            SimpleLog.logMessage("Mountain \"M - " + x + " - "+ y +"\" is out of the map");
+        } else {
+            this.boxes[x][y] = new Mountain();
+        }
+    }
+    public void addTreasure(int x, int y, int  nbTreasure) {
+        if (x < 0 || y < 0 || x > width || y > height) {
+            SimpleLog.logMessage("Treasure \"T - " + x + " - " + y + "\" is out of the map");
+        } else {
+            this.boxes[x][y] = new Treasure(nbTreasure);
+        }
+    }
 
+    public Box[][] getBoxes() {
+        return boxes;
+    }
 }
