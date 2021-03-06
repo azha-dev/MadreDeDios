@@ -1,4 +1,4 @@
-import Heroe.Hero;
+import Hero.Hero;
 import TreasureMap.TreasureMap;
 
 import java.util.ArrayList;

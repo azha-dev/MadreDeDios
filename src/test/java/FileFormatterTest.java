@@ -26,7 +26,6 @@ public class FileFormatterTest {
     @Test
     public void should_return_ArrayList_with_each_line_of_file_in_it() throws IOException {
         Path path = tempDir.resolve("testFile.txt");
-
         try {
             FileWriter fileWriter = new FileWriter(path.toString());
             fileWriter.write(
