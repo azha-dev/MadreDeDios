@@ -9,6 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import TreasureMap.Boxes.Box;
 import TreasureMap.Boxes.Plain;
 
+import java.awt.*;
+
 public class TreasureMapTest {
 
 
@@ -40,13 +42,14 @@ public class TreasureMapTest {
     public void addMountain_should_add_mountain_to_given_coordinates(){
         int mountainX = 4;
         int mountainY = 6;
+        Point testPoint = new Point(mountainX, mountainY);
 
         Box [][] expectedResult = testBoxes;
 
         expectedResult[mountainX][mountainY] = new Mountain();
 
         TreasureMap testTreasureMap = new TreasureMap(testWidth, testHeight);
-        testTreasureMap.addMountain(mountainX, mountainY);
+        testTreasureMap.addMountain(testPoint);
 
         assertArrayEquals(expectedResult, testTreasureMap.getBoxes());
     }
@@ -55,6 +58,7 @@ public class TreasureMapTest {
     public void addTreasure_should_add_treasure_to_given_coordinates_with_same_nbTreasure(){
         int treasureX = 3;
         int treasureY = 3;
+        Point testPoint = new Point(treasureX, treasureY);
         int nbTreasure = 8;
 
         Box [][] expectedResult = testBoxes;
@@ -62,7 +66,7 @@ public class TreasureMapTest {
         expectedResult[treasureX][treasureY] = new Treasure(nbTreasure);
 
         TreasureMap testTreasureMap = new TreasureMap(testWidth, testHeight);
-        testTreasureMap.addTreasure(treasureX, treasureY, nbTreasure);
+        testTreasureMap.addTreasure(testPoint, nbTreasure);
 
         assertArrayEquals(expectedResult, testTreasureMap.getBoxes());
     }
