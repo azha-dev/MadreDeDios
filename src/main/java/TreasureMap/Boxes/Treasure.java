@@ -28,4 +28,9 @@ public class Treasure implements Box {
 
         return other.isPassable() == this.isPassable() && other.getNbTreasures() == this.getNbTreasures();
     }
+
+    @Override
+    public String printBox() {
+        return "T("+nbTreasures+")";
+    }
 }

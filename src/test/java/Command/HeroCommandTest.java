@@ -4,7 +4,6 @@ import Game.Game;
 import Hero.Hero;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatcher;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -34,7 +33,7 @@ public class HeroCommandTest {
         testQueue.add('G');
 
         Point testCoordinates = new Point(4,3);
-        Hero expectedHero = new Hero(testName, testCoordinates, 'N', testQueue);
+        Hero expectedHero = new Hero(testName, testCoordinates, 'N', testQueue,0);
 
         HeroCommand testHeroCommand = new HeroCommand(testXCoordinate, testYCoordinate, testName, testMoves, testOrientation);
 

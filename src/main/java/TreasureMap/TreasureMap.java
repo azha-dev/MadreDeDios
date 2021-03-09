@@ -6,7 +6,9 @@ import TreasureMap.Boxes.Mountain;
 import TreasureMap.Boxes.Plain;
 import TreasureMap.Boxes.Treasure;
 
+import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 public class TreasureMap {
     private Box[][] boxes;
@@ -20,10 +22,10 @@ public class TreasureMap {
     }
 
     public static Box[][] initArrayOfPlainBoxes(int width, int height){
-        Box[][] arrayOfPlainBoxes = new Box[width][height];
+        Box[][] arrayOfPlainBoxes = new Box[height][width];
 
-        for(int i = 0; i<arrayOfPlainBoxes.length; i++){
-            for(int j = 0; j<arrayOfPlainBoxes[0].length; j++){
+        for(int i = 0; i<height; i++){
+            for(int j = 0; j<width; j++){
                 arrayOfPlainBoxes[i][j] = new Plain();
             }
         }
@@ -35,8 +37,8 @@ public class TreasureMap {
         int x = coordinates.x;
         int y = coordinates.y;
 
-        if (x < 0 || y < 0 || x > width || y > height) {
-            SimpleLog.logMessage("Mountain \"M - " + x + " - "+ y +"\" is out of the map");
+        if (x < 0 || y < 0 || x > height || y > width) {
+            SimpleLog.logMessage("Mountain \"M - " + x + " - "+ y +"\" is out of the map\n");
         } else {
             this.boxes[x][y] = new Mountain();
         }
@@ -45,14 +47,44 @@ public class TreasureMap {
         int x = coordinates.x;
         int y = coordinates.y;
 
-        if (x < 0 || y < 0 || x > width || y > height) {
-            SimpleLog.logMessage("Treasure \"T - " + x + " - " + y + "\" is out of the map");
+        if (x < 0 || y < 0 || x > height || y > width) {
+            SimpleLog.logMessage("Treasure \"T - " + x + " - " + y + "\" is out of the map\n");
         } else {
             this.boxes[x][y] = new Treasure(nbTreasure);
         }
     }
 
+    public Box getBoxAtCoordinate(Point point){
+        System.out.println("hello");
+        if (point.x > 0 && point.y > 0 && point.x <= this.height && point.y <= this.width) {
+            return this.boxes[point.x][point.y];
+        }
+        return null;
+    }
+
     public Box[][] getBoxes() {
         return boxes;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == this){
+            return true;
+        }
+        if (obj == null || obj.getClass() != getClass()){
+            return false;
+        }
+
+        TreasureMap other = (TreasureMap) obj;
+
+        return other.getWidth() == this.width && other.getHeight() == this.height && Arrays.deepEquals(other.getBoxes(), this.boxes);
     }
 }

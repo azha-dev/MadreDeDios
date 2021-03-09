@@ -23,11 +23,11 @@ public class CommandCreator {
             case "C":
                 return new MapCommand(commandLineArray[1], commandLineArray[2]);
             case "M":
-                return new MountainCommand(commandLineArray[1], commandLineArray[2]);
+                return new MountainCommand( commandLineArray[2], commandLineArray[1]);
             case "T":
-                return new TreasureCommand(commandLineArray[1], commandLineArray[2], commandLineArray[3]);
+                return new TreasureCommand( commandLineArray[2], commandLineArray[1], commandLineArray[3]);
             case "A":
-                return new HeroCommand(commandLineArray[2], commandLineArray[3], commandLineArray[1], commandLineArray[5], commandLineArray[4]);
+                return new HeroCommand(commandLineArray[3], commandLineArray[2], commandLineArray[1], commandLineArray[5], commandLineArray[4]);
         }
         return null;
     }

@@ -1,3 +1,6 @@
+package FileFormatter;
+
+import FileFormatter.EntryFileFormatter;
 import org.junit.jupiter.api.Test;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -13,7 +16,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class FileFormatterTest {
+public class EntryFileFormatterTest {
 
     @TempDir
     static Path tempDir;
@@ -45,13 +48,13 @@ public class FileFormatterTest {
             add("T - 0 - 3 - 2");
             add("T - 1 - 3 - 1");
         }};
-        assertEquals(expectedResult, FileFormatter.fileToStringArrayListByLines(path.toString()));
+        assertEquals(expectedResult, EntryFileFormatter.fileToStringArrayListByLines(path.toString()));
     }
 
     @Test
     public void should_throw_FileNotFoundException_if_file_doesnt_exist() {
         String fakePath = "/this/path/dont/work/file.txt";
-        assertThrows(FileNotFoundException.class, () -> FileFormatter.fileToStringArrayListByLines(fakePath));
+        assertThrows(FileNotFoundException.class, () -> EntryFileFormatter.fileToStringArrayListByLines(fakePath));
     }
 
     @Test
@@ -79,78 +82,78 @@ public class FileFormatterTest {
             add("T - 0 - 3 - 2");
             add("T - 1 - 3 - 1");
         }};
-        assertEquals(expectedResult, FileFormatter.fileToStringArrayListByLines(path.toString()));
+        assertEquals(expectedResult, EntryFileFormatter.fileToStringArrayListByLines(path.toString()));
     }
 
     @Test
     public void isCommentary_should_return_false_if_parameter_not_start_by_hashtag(){
         String importantString = "C - 3 -4";
-        assertFalse(FileFormatter.isCommentary(importantString));
+        assertFalse(EntryFileFormatter.isCommentary(importantString));
     }
 
     @Test
     public void isCommentary_should_return_true_if_parameter_start_by_hashtag(){
         String commentary = "#This is a beautiful commentary";
-        assertTrue(FileFormatter.isCommentary(commentary));
+        assertTrue(EntryFileFormatter.isCommentary(commentary));
     }
 
     @Test
     public void validateMap_should_return_true_if_string_match(){
         String matchingString = "C - 4 - 7";
-        assertTrue(FileFormatter.validateMap(matchingString));
+        assertTrue(EntryFileFormatter.validateMap(matchingString));
     }
 
     @Test
     public void validateMap_should_return_false_if_string_dont_match(){
         String notMatchingString = "This string isn't matching";
-        assertFalse(FileFormatter.validateMap(notMatchingString));
+        assertFalse(EntryFileFormatter.validateMap(notMatchingString));
     }
 
     @Test
     public void validateMountain_should_return_true_if_string_match(){
         String matchingString = "M - 4 - 7";
-        assertTrue(FileFormatter.validateMountain(matchingString));
+        assertTrue(EntryFileFormatter.validateMountain(matchingString));
     }
 
     @Test
     public void validateMountain_should_return_false_if_string_dont_match(){
         String notMatchingString = "This string isn't matching";
-        assertFalse(FileFormatter.validateMountain(notMatchingString));
+        assertFalse(EntryFileFormatter.validateMountain(notMatchingString));
     }
 
     @Test
     public void validateTreasure_should_return_true_if_string_match(){
         String matchingString = "T - 4 - 7 - 8";
-        assertTrue(FileFormatter.validateTreasure(matchingString));
+        assertTrue(EntryFileFormatter.validateTreasure(matchingString));
     }
 
     @Test
     public void validateTreasure_should_return_false_if_string_dont_match(){
         String notMatchingString = "This string isn't matching";
-        assertFalse(FileFormatter.validateTreasure(notMatchingString));
+        assertFalse(EntryFileFormatter.validateTreasure(notMatchingString));
     }
 
     @Test
     public void validateHero_should_return_true_if_string_match(){
         String matchingString = "A - Lara - 1 - 1 - S - AADADAGGA";
-        assertTrue(FileFormatter.validateHero(matchingString));
+        assertTrue(EntryFileFormatter.validateHero(matchingString));
     }
 
     @Test
     public void validateHero_should_return_false_if_string_dont_match(){
         String notMatchingString = "This string isn't matching";
-        assertFalse(FileFormatter.validateHero(notMatchingString));
+        assertFalse(EntryFileFormatter.validateHero(notMatchingString));
     }
 
     @Test
     public void validateLine_should_return_true_if_line_match_one_validator(){
         String matchingString = "A - Lara - 1 - 1 - S - AADADAGGA";
-        assertTrue(FileFormatter.validateLine(matchingString));
+        assertTrue(EntryFileFormatter.validateLine(matchingString));
     }
 
     @Test
     public void validateLine_should_return_false_if_line_not_match_any_of_validator(){
         String notMatchingString = "This string isn't matching";
-        assertFalse(FileFormatter.validateLine(notMatchingString));
+        assertFalse(EntryFileFormatter.validateLine(notMatchingString));
     }
 }

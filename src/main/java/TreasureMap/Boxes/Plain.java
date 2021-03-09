@@ -14,4 +14,10 @@ public class Plain implements Box {
 
         return other.isPassable() == this.isPassable();
     }
+
+
+    @Override
+    public String printBox() {
+        return ".";
+    }
 }

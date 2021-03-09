@@ -22,10 +22,10 @@ public class TreasureMapTest {
     public void setUp(){
         testWidth = 5;
         testHeight = 7;
-        testBoxes = new Box[testWidth][testHeight];
+        testBoxes = new Box[testHeight][testWidth];
 
-        for(int i = 0; i < testWidth; i++) {
-            for (int j = 0; j < testHeight; j++) {
+        for(int i = 0; i < testHeight; i++) {
+            for (int j = 0; j < testWidth; j++) {
                 testBoxes[i][j] = new Plain();
             }
         }
@@ -40,8 +40,8 @@ public class TreasureMapTest {
 
     @Test
     public void addMountain_should_add_mountain_to_given_coordinates(){
-        int mountainX = 4;
-        int mountainY = 6;
+        int mountainX = 6;
+        int mountainY = 4;
         Point testPoint = new Point(mountainX, mountainY);
 
         Box [][] expectedResult = testBoxes;

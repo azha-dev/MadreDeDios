@@ -23,7 +23,7 @@ public class HeroCommand extends Command {
 
     @Override
     public void execCommand(Game game) {
-        game.addHeroToGame(new Hero(this.name,stringsToPoint(this.xCoordinate, this.yCoordinate),this.orientation.charAt(0),stringToQueue(this.moves)));
+        game.addHeroToGame(new Hero(this.name,stringsToPoint(this.xCoordinate, this.yCoordinate),this.orientation.charAt(0),stringToQueue(this.moves), 0));
     }
 
     private Queue<Character> stringToQueue(String string){

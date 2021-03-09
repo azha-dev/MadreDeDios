@@ -1,11 +1,13 @@
+package FileFormatter;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public final class  FileFormatter {
+public final class EntryFileFormatter {
 
-    private FileFormatter() {
+    private EntryFileFormatter() {
     }
 
     public static ArrayList<String> fileToStringArrayListByLines(String filePath) throws IOException {

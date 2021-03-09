@@ -1,5 +1,7 @@
 package TreasureMap.Boxes;
 
+import Log.SimpleLog;
+
 public class Mountain implements Box {
 
     @Override
@@ -19,5 +21,10 @@ public class Mountain implements Box {
         Mountain other = (Mountain) obj;
 
         return other.isPassable() == this.isPassable();
+    }
+
+    @Override
+    public String printBox() {
+        return "M";
     }
 }

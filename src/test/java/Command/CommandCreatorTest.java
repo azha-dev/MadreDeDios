@@ -21,7 +21,7 @@ public class CommandCreatorTest {
     @Test
     public void getCommandFromString_should_return_a_MountainCommand_if_first_char_is_M(){
         String inputCommand = "M - 7 - 2";
-        Command expectedCommand = new MountainCommand("7", "2");
+        Command expectedCommand = new MountainCommand("2", "7");
 
         assertEquals(expectedCommand, CommandCreator.getCommandFromString(inputCommand));
     }
@@ -35,8 +35,7 @@ public class CommandCreatorTest {
     @Test
     public void getCommandFromString_should_return_a_HeroCommand_if_first_char_is_A(){
         String inputCommand = "A - TestHero - 4 - 7 - N - AAGDA";
-        Command expectedCommand = new HeroCommand("4", "7", "TestHero", "AAGDA", "N" );
-        Command testResult = CommandCreator.getCommandFromString(inputCommand);
+        Command expectedCommand = new HeroCommand("7", "4", "TestHero", "AAGDA", "N" );
         assertEquals(expectedCommand, CommandCreator.getCommandFromString(inputCommand));
     }
 
@@ -50,9 +49,9 @@ public class CommandCreatorTest {
 
         ArrayList<Command> expectedResult = new ArrayList<Command>();
         expectedResult.add(new MapCommand("2", "9"));
-        expectedResult.add( new MountainCommand("1", "2"));
+        expectedResult.add( new MountainCommand("2", "1"));
         expectedResult.add(new TreasureCommand("4", "4", "2"));
-        expectedResult.add(new HeroCommand("4", "7", "TestHero", "AAGDA", "N" ));
+        expectedResult.add(new HeroCommand("7", "4", "TestHero", "AAGDA", "N" ));
 
         assertEquals(expectedResult, commandCreator.arrayLisStringToArrayListCommand(inputLines));
     }
