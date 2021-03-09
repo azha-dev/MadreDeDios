@@ -1,5 +1,7 @@
 package FileFormatter;
 
+import Log.SimpleLog;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -49,5 +51,15 @@ public final class EntryFileFormatter {
 
     public static boolean validateLine(String line){
         return validateMap(line) || validateMountain(line) || validateTreasure(line) || validateHero(line);
+    }
+
+    public static boolean validateAllLines(ArrayList<String> allLines){
+        for (String line: allLines) {
+            if(!validateLine(line)){
+                SimpleLog.logMessage("This command : "+line+" hasn't been recognized");
+                return false;
+            }
+        }
+        return true;
     }
 }

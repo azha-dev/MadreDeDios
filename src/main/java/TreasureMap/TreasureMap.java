@@ -55,7 +55,6 @@ public class TreasureMap {
     }
 
     public Box getBoxAtCoordinate(Point point){
-        System.out.println("hello");
         if (point.x > 0 && point.y > 0 && point.x <= this.height && point.y <= this.width) {
             return this.boxes[point.x][point.y];
         }

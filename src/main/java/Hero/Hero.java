@@ -8,14 +8,16 @@ public class Hero {
     private Point coordinates;
     private Character orientation;
     private Queue<Character> movement;
+    private String allMovements;
     private int nbTreasures;
 
-    public Hero(String name, Point coordinates, Character orientation, Queue<Character> movement, int nbTreasures) {
+    public Hero(String name, Point coordinates, Character orientation, Queue<Character> movement, int nbTreasures, String allMovements) {
         this.name = name;
         this.coordinates = coordinates;
         this.orientation = orientation;
         this.movement = movement;
         this.nbTreasures = nbTreasures;
+        this.allMovements = allMovements;
     }
 
 
@@ -61,5 +63,9 @@ public class Hero {
 
     public String printHero(){
         return "A("+name+")";
+    }
+
+    public String printOutputFormat(){
+        return "A - "+this.name+" - "+this.coordinates.x+" - "+this.coordinates.y+" - "+this.orientation+" - "+this.nbTreasures;
     }
 }

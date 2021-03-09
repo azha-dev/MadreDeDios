@@ -33,7 +33,7 @@ public class HeroCommandTest {
         testQueue.add('G');
 
         Point testCoordinates = new Point(4,3);
-        Hero expectedHero = new Hero(testName, testCoordinates, 'N', testQueue,0);
+        Hero expectedHero = new Hero(testName, testCoordinates, 'N', testQueue,0, testMoves);
 
         HeroCommand testHeroCommand = new HeroCommand(testXCoordinate, testYCoordinate, testName, testMoves, testOrientation);
 

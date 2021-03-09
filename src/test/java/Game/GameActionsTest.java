@@ -32,7 +32,7 @@ public class GameActionsTest {
         testQueue.add('A');
         testQueue.add('A');
         testQueue.add('D');
-        testHero = new Hero("TestHero", new Point(0,0),'S', testQueue,0);
+        testHero = new Hero("TestHero", new Point(0,0),'S', testQueue,0,"AAD");
 
         Game game = new Game();
     }

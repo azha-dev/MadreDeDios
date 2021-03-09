@@ -2,6 +2,7 @@ package Game;
 
 import Hero.Hero;
 import TreasureMap.Boxes.Box;
+import TreasureMap.Boxes.Plain;
 import TreasureMap.Boxes.Treasure;
 import TreasureMap.TreasureMap;
 
@@ -39,6 +40,9 @@ public class GameActions {
                     Box currentBox = game.getTreasureMap().getBoxAtCoordinate(hero.getCoordinates());
                     if (currentBox instanceof Treasure) {
                         collectTreasure(hero, (Treasure) currentBox);
+                        if(((Treasure) currentBox).getNbTreasures() == 0){
+                            currentBox = new Plain();
+                        }
                     }
                 }
             }
@@ -110,7 +114,10 @@ public class GameActions {
     }
 
     boolean isBoxValid(Point point, Game game){
-        return isBoxPassable(point, game.getTreasureMap()) && !game.isOneHeroOnBox(point);
+        if((point.x > 0 && point.y > 0 && point.x < game.getTreasureMap().getHeight() && point.y < game.getTreasureMap().getWidth())){
+            return isBoxPassable(point, game.getTreasureMap()) && !game.isOneHeroOnBox(point);
+        }
+        return false;
     }
 
     void collectTreasure(Hero hero, Treasure treasureBox){

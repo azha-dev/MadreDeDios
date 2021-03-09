@@ -5,6 +5,9 @@ import Command.CommandCreator;
 import Hero.Hero;
 import Log.SimpleLog;
 import TreasureMap.Boxes.Box;
+import TreasureMap.Boxes.Mountain;
+import TreasureMap.Boxes.Plain;
+import TreasureMap.Boxes.Treasure;
 import TreasureMap.TreasureMap;
 
 import java.awt.*;
@@ -82,13 +85,42 @@ public class Game {
         return false;
     }
 
-    public ArrayList<String> gameToArrayList(){
+    public ArrayList<String> gameToOutputArrayList(){
         ArrayList<String> outputData = new ArrayList<>();
 
         outputData.add("C - " + treasureMap.getWidth() + " - " + this.treasureMap.getHeight());
 
+        addBoxesInfosToOutput(outputData);
+
+        addHeroesInfosToOutput(outputData);
 
         return outputData;
+    }
+
+    private void addHeroesInfosToOutput(ArrayList<String> outputData) {
+        for (Hero hero: heroes) {
+            outputData.add(hero.printOutputFormat());
+        }
+    }
+
+    private void addBoxesInfosToOutput(ArrayList<String> outputData) {
+        for (int i = 0; i < treasureMap.getHeight(); i++) {
+            for (int j = 0; j < treasureMap.getWidth(); j++) {
+                Box box = treasureMap.getBoxes()[i][j];
+                if(!(box instanceof Plain)){
+                    outputData.add(getOutputDataFromBox(box, i, j));
+                }
+            }
+        }
+    }
+
+    private String getOutputDataFromBox(Box box, int x, int y) {
+        if(box instanceof Mountain){
+            return "M - " + x + " - " + y;
+        } else if (box instanceof Treasure){
+            return "T - " + x + " - " + y + " - " + ((Treasure) box).getNbTreasures();
+        }
+        return "";
     }
 
     public TreasureMap getTreasureMap() {

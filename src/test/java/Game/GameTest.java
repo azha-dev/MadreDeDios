@@ -35,8 +35,8 @@ public class GameTest {
         testQueue.add('A');
         testQueue.add('A');
         testQueue.add('D');
-        Hero firstTestHero = new Hero("TestHero", new Point(0,0),'S', testQueue,0);
-        Hero secondTestHero = new Hero("TestHero", new Point(0,0),'S', new LinkedList<>(),0);
+        Hero firstTestHero = new Hero("TestHero", new Point(0,0),'S', testQueue,0, "AAD");
+        Hero secondTestHero = new Hero("TestHero", new Point(0,0),'S', new LinkedList<>(),0, "AAD");
 
 
         ArrayList<Hero> heroes = new ArrayList<>();
@@ -48,8 +48,8 @@ public class GameTest {
 
     @Test
     void atLeastOneHeroHasMoves_should_return_false_if_no_hero_have_a_move(){
-        Hero firstTestHero = new Hero("TestHero", new Point(0,0),'S', new LinkedList<>(),0);
-        Hero secondTestHero = new Hero("TestHero", new Point(0,0),'S', new LinkedList<>(),0);
+        Hero firstTestHero = new Hero("TestHero", new Point(0,0),'S', new LinkedList<>(),0, "AAD");
+        Hero secondTestHero = new Hero("TestHero", new Point(0,0),'S', new LinkedList<>(),0, "AAD");
 
 
         ArrayList<Hero> heroes = new ArrayList<>();
@@ -61,7 +61,7 @@ public class GameTest {
 
     @Test
     void isOneHeroOnBox_should_return_true_if_one_hero_is_on_coordinates(){
-        Hero firstTestHero = new Hero("TestHero", new Point(0,0),'S', new LinkedList<>(),0);
+        Hero firstTestHero = new Hero("TestHero", new Point(0,0),'S', new LinkedList<>(),0,"");
 
         ArrayList<Hero> heroes = new ArrayList<>();
         heroes.add(firstTestHero);
@@ -73,7 +73,7 @@ public class GameTest {
 
     @Test
     void isOneHeroOnBox_should_return_false_if_no_hero_is_on_coordinates(){
-        Hero firstTestHero = new Hero("TestHero", new Point(0,0),'S', new LinkedList<>(),0);
+        Hero firstTestHero = new Hero("TestHero", new Point(0,0),'S', new LinkedList<>(),0,"");
 
         ArrayList<Hero> heroes = new ArrayList<>();
         heroes.add(firstTestHero);
@@ -85,7 +85,7 @@ public class GameTest {
     
     @Test
     void getHeroOnCoordinate_should_return_Optional_with_hero_if_hero_on_coordinates(){
-        Hero expectedHero = new Hero("TestHero", new Point(0,0),'S', new LinkedList<>(),0);
+        Hero expectedHero = new Hero("TestHero", new Point(0,0),'S', new LinkedList<>(),0,"");
 
         ArrayList<Hero> heroes = new ArrayList<>();
         heroes.add(expectedHero);
