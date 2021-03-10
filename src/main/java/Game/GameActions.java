@@ -51,7 +51,7 @@ public class GameActions {
 
     void oneMovement(Hero hero, Game game){
        String movementWithOrientation = twoCharToString(hero.getOrientation(), hero.getMovement().poll());
-        String nextMovement = movementsFromOrientation.get(movementWithOrientation);
+       String nextMovement = movementsFromOrientation.get(movementWithOrientation);
        switch (movementsFromOrientation.get(movementWithOrientation)) {
            case "up":
                moveUp(hero, game);
@@ -72,40 +72,33 @@ public class GameActions {
         Point heroCoordinate = hero.getCoordinates();
         Point newHeroCoordinate = new Point(heroCoordinate.x+1, heroCoordinate.y);
 
-        if(!(newHeroCoordinate.x+1 > game.getTreasureMap().getHeight())) {
-            if(isBoxValid(newHeroCoordinate, game)) {
-                heroCoordinate.setLocation(heroCoordinate.x+1, heroCoordinate.y);
-            }
+        if(isBoxValid(newHeroCoordinate, game)) {
+            heroCoordinate.setLocation(heroCoordinate.x+1, heroCoordinate.y);
         }
     }
     void moveUp(Hero hero, Game game){
         Point heroCoordinate = hero.getCoordinates();
         Point newHeroCoordinate = new Point(heroCoordinate.x-1, heroCoordinate.y);
 
-        if(!(newHeroCoordinate.x < 0)) {
-            if(isBoxValid(newHeroCoordinate, game)) {
-                heroCoordinate.setLocation(heroCoordinate.x-1, heroCoordinate.y);
-            }
+        if(isBoxValid(newHeroCoordinate, game)) {
+            heroCoordinate.setLocation(heroCoordinate.x-1, heroCoordinate.y);
         }
     }
     void moveRight(Hero hero, Game game){
         Point heroCoordinate = hero.getCoordinates();
         Point newHeroCoordinate = new Point(heroCoordinate.x, heroCoordinate.y + 1);
 
-        if(!(newHeroCoordinate.y > game.getTreasureMap().getWidth())) {
-            if(isBoxValid(newHeroCoordinate, game)) {
-                heroCoordinate.setLocation(heroCoordinate.x, heroCoordinate.y + 1);
-            }
+        if(isBoxValid(newHeroCoordinate, game)) {
+            heroCoordinate.setLocation(heroCoordinate.x, heroCoordinate.y + 1);
         }
+
     }
     void moveLeft(Hero hero, Game game){
         Point heroCoordinate = hero.getCoordinates();
         Point newHeroCoordinate = new Point(heroCoordinate.x, heroCoordinate.y - 1);
 
-        if(!(newHeroCoordinate.y < 0)) {
-            if(isBoxValid(newHeroCoordinate, game)) {
-                heroCoordinate.setLocation(heroCoordinate.x, heroCoordinate.y - 1);
-            }
+        if(isBoxValid(newHeroCoordinate, game)) {
+            heroCoordinate.setLocation(heroCoordinate.x, heroCoordinate.y - 1);
         }
     }
 
@@ -125,7 +118,7 @@ public class GameActions {
     }
 
     boolean isBoxInMap(Point point, TreasureMap treasureMap) {
-        return point.x > 0 && point.y > 0 && point.x < treasureMap.getHeight() && point.y < treasureMap.getWidth();
+        return point.x >= 0 && point.y >= 0 && point.x < treasureMap.getHeight() && point.y < treasureMap.getWidth();
     }
 
     void collectTreasure(Hero hero, Treasure treasureBox){
