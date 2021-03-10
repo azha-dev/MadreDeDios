@@ -114,10 +114,14 @@ public class GameActions {
     }
 
     boolean isBoxValid(Point point, Game game){
-        if((point.x > 0 && point.y > 0 && point.x < game.getTreasureMap().getHeight() && point.y < game.getTreasureMap().getWidth())){
+        if(isBoxInMap(point, game.getTreasureMap())){
             return isBoxPassable(point, game.getTreasureMap()) && !game.isOneHeroOnBox(point);
         }
         return false;
+    }
+
+    boolean isBoxInMap(Point point, TreasureMap treasureMap) {
+        return point.x > 0 && point.y > 0 && point.x < treasureMap.getHeight() && point.y < treasureMap.getWidth();
     }
 
     void collectTreasure(Hero hero, Treasure treasureBox){

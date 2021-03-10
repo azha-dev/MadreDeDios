@@ -116,9 +116,9 @@ public class Game {
 
     private String getOutputDataFromBox(Box box, int x, int y) {
         if(box instanceof Mountain){
-            return "M - " + x + " - " + y;
+            return "M - " + y + " - " + x;
         } else if (box instanceof Treasure){
-            return "T - " + x + " - " + y + " - " + ((Treasure) box).getNbTreasures();
+            return "T - " + y + " - " + x + " - " + ((Treasure) box).getNbTreasures();
         }
         return "";
     }
