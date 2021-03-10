@@ -2,7 +2,6 @@ package Game;
 
 import Hero.Hero;
 import TreasureMap.Boxes.Treasure;
-import TreasureMap.TreasureMap;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +15,6 @@ import java.util.Queue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class GameActionsTest {
@@ -32,7 +30,7 @@ public class GameActionsTest {
         testQueue.add('A');
         testQueue.add('A');
         testQueue.add('D');
-        testHero = new Hero("TestHero", new Point(0,0),'S', testQueue,0,"AAD");
+        testHero = new Hero("TestHero", new Point(0,0),'S', testQueue,0);
 
         Game game = new Game();
     }

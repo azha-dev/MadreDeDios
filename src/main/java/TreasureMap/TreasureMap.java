@@ -6,7 +6,6 @@ import TreasureMap.Boxes.Mountain;
 import TreasureMap.Boxes.Plain;
 import TreasureMap.Boxes.Treasure;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 

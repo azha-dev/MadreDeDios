@@ -51,16 +51,20 @@ public class GameActions {
 
     void oneMovement(Hero hero, Game game){
        String movementWithOrientation = twoCharToString(hero.getOrientation(), hero.getMovement().poll());
-
+        String nextMovement = movementsFromOrientation.get(movementWithOrientation);
        switch (movementsFromOrientation.get(movementWithOrientation)) {
            case "up":
                moveUp(hero, game);
+               break;
            case "down":
                moveDown(hero, game);
+               break;
            case "left":
                moveLeft(hero, game);
+               break;
            case "right":
                moveRight(hero, game);
+               break;
        }
     }
 
@@ -70,7 +74,7 @@ public class GameActions {
 
         if(!(newHeroCoordinate.x+1 > game.getTreasureMap().getHeight())) {
             if(isBoxValid(newHeroCoordinate, game)) {
-                heroCoordinate.setLocation(newHeroCoordinate);
+                heroCoordinate.setLocation(heroCoordinate.x+1, heroCoordinate.y);
             }
         }
     }
@@ -80,7 +84,7 @@ public class GameActions {
 
         if(!(newHeroCoordinate.x < 0)) {
             if(isBoxValid(newHeroCoordinate, game)) {
-                heroCoordinate.setLocation(newHeroCoordinate);
+                heroCoordinate.setLocation(heroCoordinate.x-1, heroCoordinate.y);
             }
         }
     }
@@ -90,7 +94,7 @@ public class GameActions {
 
         if(!(newHeroCoordinate.y > game.getTreasureMap().getWidth())) {
             if(isBoxValid(newHeroCoordinate, game)) {
-                heroCoordinate.setLocation(newHeroCoordinate);
+                heroCoordinate.setLocation(heroCoordinate.x, heroCoordinate.y + 1);
             }
         }
     }
@@ -100,7 +104,7 @@ public class GameActions {
 
         if(!(newHeroCoordinate.y < 0)) {
             if(isBoxValid(newHeroCoordinate, game)) {
-                heroCoordinate.setLocation(newHeroCoordinate);
+                heroCoordinate.setLocation(heroCoordinate.x, heroCoordinate.y - 1);
             }
         }
     }

@@ -7,13 +7,13 @@ import static java.lang.Integer.parseInt;
 public class MapCommand extends Command{
 
 
-    public MapCommand(String xCoordinate, String yCoordinate) {
+    public MapCommand(String yCoordinate, String xCoordinate) {
         super(xCoordinate, yCoordinate);
     }
 
     @Override
     public void execCommand(Game game) {
-        game.initGameMap(parseInt(xCoordinate), parseInt(yCoordinate));
+        game.initGameMap(parseInt(yCoordinate), parseInt(xCoordinate));
     }
 
 }

@@ -33,8 +33,10 @@ public class Game {
 
     public void startGame(){
         GameActions gameActions = new GameActions();
+        printGame();
         while (atLeastOneHeroHasMoves(heroes)){
             gameActions.oneTurn(heroes, this);
+            printGame();
         }
     }
 
